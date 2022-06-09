@@ -1,6 +1,6 @@
 # Javascript e TypeScript Luiz Otavi Miranda
-[Acesse o Curso](https://www.udemy.com/course/curso-de-javascript-moderno-do-basico-ao-avancado/)
-[Repositorio Original](https://github.com/luizomf/curso-js)
+- [Acesse o Curso](https://www.udemy.com/course/curso-de-javascript-moderno-do-basico-ao-avancado/)    
+- [Repositorio Original](https://github.com/luizomf/curso-js)
 
 Esse repositorio tem como objetivo registrar os pontos chaves observados por mim no curso, e não ser uma copia do repositorio original.
 
