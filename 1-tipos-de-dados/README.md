@@ -12,6 +12,24 @@ primitivos (não pode ser passado por referencia).
 
 object é um tipo de dado não primitivo (pode ser passado por referencia)
 
+Tipos de dados primitivos JavaScript são tipos de dados que se referem a  
+um único valor.
+
+Arrays e functions são do tipo object  
+```javascript
+function myFunction () {};
+const myArray = [ 1, 2, 3 ];
+
+typeof myFunction; // retorna 'function'...
+typeof myArray; // retorna 'object'
+
+/*
+ Lembre que functions e arrays e objetos são do tipo object também.
+ Toda funcão tem no prototype o objeto Function que tem o prototype
+ Object
+*/
+```
+
 **Tipos de dados primitivos não possuem um prototype**  
 'a string literal'.length  
 O literal é convertido temporariamente em um objeto, o método é invocado  
