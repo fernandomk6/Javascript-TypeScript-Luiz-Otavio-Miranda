@@ -12,6 +12,53 @@ primitivos (não pode ser passado por referencia).
 
 object é um tipo de dado não primitivo (pode ser passado por referencia)
 
+**Tipos de dados primitivos não possuem um prototype**
+'a string literal'.length
+O literal é convertido temporariamente em um objeto, o método é invocado e o  
+objeto é descartado.
+Os literais têm algumas vantagens distintas sobre os objetos.
+
+false, dois objectos diferentes com mesmos valores
+alert( new String('string') == new String('string') ); 
+
+true, valores literais identicos
+alert( 'string' == 'string' );
+
+"Literal" é um valor que você escreve literalmente no seu script, pode ser  
+atribuindo a uma variável, ou passando com argumento de uma função, ou até  
+escrever solto no seu script, sem atribuir ou setar nada, o que importa é  
+que se escreve exatamente o que será o valor
+
+Literais são exatamente escrever o valor, por exemplo isto seria um  
+"Array literal":
+```
+var x = [ "a", "b", "c" ];
+```
+Isto já não é:
+```
+var x = new Array();
+
+x.push("a");
+x.push("b");
+x.push("c");
+```
+
+**Para fixar**
+Tipos de dados literias não são objetos por si só
+o javascript apenas transforma (temporariamente) em objeto, quando tentamos  
+acessar um metodo ou propriedade. Literias não possuem prototype. 
+Literais são
+- 'fernando' - string
+- 1 - number
+- true - boolean
+- undefined - undefined
+- null - object
+- symbol - estudar mais sobre isso depois...
+- object - podem ser escrito de forma literal, porem, possuem metodos e  
+propriedades. Não são como strings que são transformadas temporariamente em
+Objetos. Eles são nativamente objetos, por isso não são PRIMITIVOS, mas podem  
+ser literais... 
+
 ## lista de dados e seus respectivos prototypes
 - string - String
 - number - Number
