@@ -15,3 +15,6 @@ function Dog(name) {
   this.name = name;
   return 'Função construtoras de animais';
 }
+
+const friddieMercury = new Dog('Freddie Mercury');
+const fernando = new People('Fernando');
