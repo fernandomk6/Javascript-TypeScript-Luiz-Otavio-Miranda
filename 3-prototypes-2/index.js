@@ -15,10 +15,3 @@ function Dog(name) {
   this.name = name;
   return 'Função construtoras de animais';
 }
-
-// class People { constructor(name) {this.name = name} }
-const fernando = new People('Fernando'); 
-console.log(fernando.__proto__ === People.prototype); // true
-console.log(fernando.__proto__ === People.__proto__); // false
-console.log(fernando.prototype === People.__proto__); // false
-console.log(fernando.prototype === People.prototype); // false
