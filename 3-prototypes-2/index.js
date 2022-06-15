@@ -1,20 +1,56 @@
-class People {
-  // constructor e say hello, são propriedades do prototype de People
-  constructor(name) {
-    this.name = name;
-    return 'Função construtora de pessoas';
-  }
+// class Father {
+//   constructor() {
+//     this.father = true;
+//   }
+// }
 
-  sayHello(){
-    return 'Hello'
+// class Child extends Father {
+//   constructor() {
+//     super()
+//     this.child = true;
+//   }
+// }
+
+// const bob = new Child();
+
+// console.log(Object.getPrototypeOf(bob) === Child.prototype);
+// console.log(Object.getPrototypeOf(Child.prototype) === Father.prototype);
+// console.log(Object.getPrototypeOf(Father.prototype) === Object.prototype);
+// console.log(Object.getPrototypeOf(Object.prototype) === null);
+
+// console.log(Object.getPrototypeOf(Child) === Father);
+// console.log(Object.getPrototypeOf(Father) === Function.prototype);
+// console.log(Object.getPrototypeOf(Function.prototype) === Object.prototype);
+// console.log(Object.getPrototypeOf(Object.prototype) === null);
+
+// console.log(Object.getPrototypeOf(Function) === Function.prototype);
+// console.log(Object.getPrototypeOf(Function.prototype) === Object.prototype);
+// console.log(Object.getPrototypeOf(Object.prototype) === null);
+
+// // Entender bem isso aqui primeiro
+// console.log(Child === Child.prototype);
+// console.log(Child);
+// console.log(Child.prototype);
+
+// ---
+
+class Father {
+  constructor() {
+    this.father = true;
   }
 }
 
-function Dog(name) {
-  // constructor é uma propriedade do prototype de Dog
-  this.name = name;
-  return 'Função construtoras de animais';
+class Child{
+  constructor() {
+    this.child = true;
+  }
 }
 
-const friddieMercury = new Dog('Freddie Mercury');
-const fernando = new People('Fernando');
+// Lembre-se, prototype é sempre um objeto
+console.log(typeof Child); // function
+console.log(typeof Child.prototype); // object
+console.log(Child.prototype); // não existe
+console.log(Child.prototype.prototype); // não existe
+
+// Objectos não tem prototype
+// Apenas funções possuem prototypes

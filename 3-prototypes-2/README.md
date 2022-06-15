@@ -166,4 +166,64 @@ let x = new String("testing")
 Object.getPrototypeOf(x) === x.__proto__; // true
 ```
 
+---
 
+## Metodo Estaticos
+Metodo estaticos são metodo que um objeto function, ou class pode ter,  
+e esses metodos podem ser executados diretamente pelo objeto function  
+ou class, sem precisar da instancia de um objeto  
+
+Usando sintaxe de função
+
+```javascript
+function Foo() {
+  
+}
+
+Foo.staticMethod = function() {
+  console.log('Metodo estatico executado');
+}
+
+Foo.staticMethod(); // Metodo estatico executado
+```
+
+Não foi necessario estaciar um objeto para executar o staticMethod  
+
+Usando sintaxe de class
+
+```javascript
+class Foo {
+  constructor() {
+
+  }
+
+  static anotherStaticMethod() {
+    console.log('Outro metodo estatico executado');
+  }
+}
+
+// forma tradicional de declarar metodo static
+Foo.staticMethod = function(){
+  console.log('Metodo estatico executado');
+}
+
+// utilizando a palavra chave na class
+Foo.anotherStaticMethod(); // Outro metodo estatico executado
+
+Foo.staticMethod(); // Metodo estatico executado
+```
+
+Isso faz a mesma coisa do exemplo acima. Porem agora usando  
+a palavra chave static  
+
+Perceba que o javascript utiliza varios metodos estaticos, como por exemplo  
+`Object.create()`
+
+**Os objetos instanciados apartir de Foo, herdarão o staticMethod?**  
+A resposta é  
+**Não!**  
+Os Metodos estaticos pertencem apenas a função / class, e não são passada para  
+as suas instancias
+---
+
+## Entendendo o que a palavra extends faz por baixo dos panos  
