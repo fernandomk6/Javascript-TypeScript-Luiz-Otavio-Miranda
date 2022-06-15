@@ -18,13 +18,30 @@ const bob = new Child();
 // Function.prototype.construcotr.name retorna Function como string
 
 // Todos os outros prototypes tem names?
-// Toda declaração de função tem uma propriedade name
+// Se forem funções sim. Tota função tem a propriedade name que tem seu
+// nome
+// Se for objeto, verifique o prototype com .constructor.name
 // Objetos não tem propriedade name por dafault
 
 // Function.prototype = uma função anonima
 // prototypes podem ser funções????
+// Sim. Isso é usado com o Extends
+// Object.getPrototypeOf(Child) === Father // true
+// Child Extends Father
+// O fato de Extender. não executou o prototype de Father,
+// Apenas as criações herdam o prototype
+// Como Child não é criada de Father, o seu prototypo não é
+// Father.prototype
+// Quem é o prototype de Child
+// A Função FATHER
+// O constructor é usado para instancias e retorna um objeto
+// no Extends, a propria função construtora é o prototype de Child
+// e não o prototype da função construtora
 
 // Pq proto de Child tem name e proto de Father não tem name ??
+// name é propriedade de uma função
+
+// Retorna Function, pois o nome da função construtora de deles é Function
 console.log(Object.getPrototypeOf(Father).constructor.name);
 console.log(Object.getPrototypeOf(Child).constructor.name);
 
@@ -32,8 +49,53 @@ console.log(Object.getPrototypeOf(Child).constructor.name);
 // Father.constructor === Function
 // Father.prototype === Father
 
+// O prototype de Function e uma função anomima
+console.log(typeof Function.prototype); // 'function'
+// se é function tem um name
+// no caso de Function.prototype, é uma função anonima
+console.log(Function.prototype.name == ''); // true
+
+// Por que isso aqui da true??
+console.log(Function.prototype === Object.getPrototypeOf(Function)); // true
+
+// A Função Function é uma instancia de Function?
+console.log(Function.prototype.isPrototypeOf(Function)); // True
+// Why God???
+
+// A Function.prototype é uma funcção anonima
+// então function.prototype.name retorna string vazia
+
+// Function.prototype é uma função vazia, todas as funções
+// criadas herdam dela
+function x(){};
+console.log(Object.getPrototypeOf(x) === Function.prototype); // true
+
+// Function é uma função
+// Então Function tbm erda propriedades de Function.prototype
+console.log(Object.getPrototypeOf(Function) === Function.prototype); // true
+
+// Quem é o prototype de Function.prototype?
+console.log(typeof Object.getPrototypeOf(Function.prototype)); // object então 
+// usei o constructor.name para saber o nome da função construtora
+
+console.log(Object.getPrototypeOf(Function.prototype).constructor.name);
+ // Object
+
+
+console.log(Object.getPrototypeOf(Function.prototype) === Object.prototype);
+// True
+
+console.log(Object.getPrototypeOf(Object.prototype) === null); // True
+// Concluido prototype chain passando por um extends
+
 // pq isso não funciona
+// O prototype é setado nas instancias
+// Quando usado o extends, a classe que extende o father, não é sua instancia
+// logo não possuira seu prototype
+// e quem será seu prototype se não for, Father.prototype?
+// Seu prototype será a função Father;
 console.log(Object.getPrototypeOf(Child) === Father.prototype); // False
+console.log(Object.getPrototypeOf(Child) === Father); // true
 
 // console.log(Object.getPrototypeOf(bob) === Child.prototype);
 // console.log(Object.getPrototypeOf(Child.prototype) === Father.prototype);
