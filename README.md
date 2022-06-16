@@ -11,7 +11,7 @@ Abaixo uma lista **resumida** das seções do curso.
 - Node, Express, MongoDB e MySQL/MariaDB
 - Criação de projetos com Node, Express e EJS
 - Configuração de um servidor Linux para Deploy (Ubuntu Server)
-- Configurações de segurança para o servidor (SSH e TLS - Https)z
+- Configurações de segurança para o servidor (SSH e TLS - Https)
 - Criação de API Rest com Node + Express + Sequelize (back-end)
 - React JS com React Hooks + Redux com Redux Saga (front-end)
 - Princípios da programação orientada a objetos
