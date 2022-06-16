@@ -1,5 +1,5 @@
 # Mais sobre Prototypes
-## 1 - Entendendo a diferença entre, construtores e objetos
+## Entendendo a diferença entre, construtores e objetos
 
 Veja o Codigo Abaixo
 
@@ -70,7 +70,7 @@ const strConverted = String(1); // converte o parametro 1, para '1' e o retorna
 
 ---
 
-## 2 - `__proto__` VS prototype 
+## `__proto__` VS prototype 
 
 - Prototype
   - Prototype é uma propriedade de um objeto Function  
@@ -92,6 +92,7 @@ const strConverted = String(1); // converte o parametro 1, para '1' e o retorna
   - `__proto__` é a referência à propriedade function.prototype da função
 
 Veja o Exemplo abaixo
+
 ```javascript
 function Person(name){
     this.name = name
@@ -129,7 +130,7 @@ isso no final
 
 ```javascript
 let child = new Parent();
-child.__proto__ === Parent.prototype // --> true.
+child.__proto__ === Parent.prototype // -- true.
 ```
 
 *Lembre-se child.`[[prototype]]` é inacessível, então verificamos usando  
@@ -152,10 +153,10 @@ algo deve ser construído. Então
 let bar = new Foo();
 
 // `bar` é construído de como Foo sabe construir objetos
-bar.__proto__ === Foo.prototype // => true
+bar.__proto__ === Foo.prototype // = true
 
 // bar é uma instância - não sabe como criar objetos
-bar.prototype // => undefined
+bar.prototype // = undefined
 ```
 
 Uma alternativa ao `__proto__` é o metodo estatico de Object, getPrototypeOf
@@ -168,7 +169,7 @@ Object.getPrototypeOf(x) === x.__proto__; // true
 
 ---
 
-## Metodo Estaticos
+## Metodo e propriedade Estaticos
 Metodo estaticos são metodo que um objeto function, ou class pode ter,  
 e esses metodos podem ser executados diretamente pelo objeto function  
 ou class, sem precisar da instancia de um objeto  
@@ -226,8 +227,137 @@ Os Metodos estaticos pertencem apenas a função / class, e não são passada pa
 as suas instancias
 ---
 
+## Metodos e propriedades estaticos
+Metodos estaticos são colocados diretamente no objeto construtor function  
+Metodo estatico não são herdado pelas instancias
+
+```javascript
+// sintaxe de class
+class Proto1 {
+  constructor() {
+    this.proto1 = true; // será propriedade do proprio objeto instanciado
+  }
+
+  noStatic = 'notStatic'; // será herdado do prototype pai 
+
+  static isStatic = 'isStatic'; // estatico, não será herdado
+}
+
+Proto1.sayHello = 'hello'; // estatico, não será herdado
+
+// sintaxe de function
+function Proto1() {
+  this.proto1 = true; // será propriedade do proprio objeto instanciado
+}
+
+Proto1.prototype.foo = 'foo'; // será herdado do prototype pai 
+
+Proto1.sayHello = 'hello'; // estatico, não será herdado
+```
+
+```javascript
+function Foo() {
+  this.child = 'propriedade do proprio objeto instanciado';
+};
+
+Foo.prototype.father = 'propriedade herdada do prototype do constructor';
+Foo.isStatic = true;
+
+const bar = new Foo();
+
+console.log(bar.child); // propriedade do proprio objeto instanciado
+console.log(bar.father); // propriedade herdada do prototype do constructor
+console.log(bar.isStatic); // undefined
+console.log(Foo.isStatic); // true
+
+class Bar {
+  constructor() {
+    this.child = 'propriedade do proprio objeto instanciado';
+  }
+  father = 'propriedade herdada do prototype do constructor';
+}
+
+Bar.isStatic = true;
+
+const foo = new Bar();
+
+console.log(foo.child); // propriedade do proprio objeto instanciado
+console.log(foo.father); // propriedade herdada do prototype do constructor
+console.log(foo.isStatic); // undefined
+console.log(Bar.isStatic); // true
+```
+
+## Extends
+O extends é uma chamada de uma função construtora  
+É quando o prototype de alguma função, é outra função
+
+O extends retorna um objeto, e esse objeto sera
+
+```javascript
+// sintaxe de class
+class Father {
+  constructor(fatherName) {
+    this.fatherName = fatherName;
+  }
+  static staticPropFather = true;
+  haveFather = true;
+};
+
+class Child extends Father {
+  constructor(childName, fatherName) {
+    super(fatherName);
+    this.childName = childName;
+  }
+  static staticPropChild = true;
+  isChild = true;
+};
+
+const bob = new Child('bob', 'moacir');
+
+console.log(bob.fatherName, bob.childName); // moacir bob
+console.log(bob.haveFather, bob.isChild); // true true
+
+console.log(Father.prototype.isPrototypeOf(bob)); // true
+console.log(Child.prototype.isPrototypeOf(bob)); // true
+```
+
+```javascript
+// function sintaxe
+function Father(fatherName) {
+  this.fatherName = fatherName;
+};
+
+Father.prototype.haveFather = true;
+Father.staticPropFather = true;
+
+function Child(childName) {
+  this.childName = childName;
+};
+
+Child.staticPropChild = true;
+
+// setando o extends
+Child.prototype = new Father('moacir'); // semelhante ao super()
+Child.prototype.isChild = true;
+
+const bob = new Child('bob', 'moacir');
+
+console.log(bob.fatherName, bob.childName); // moacir bob
+console.log(bob.haveFather, bob.isChild); // true true
+
+console.log(Father.prototype.isPrototypeOf(bob)); // true
+console.log(Child.prototype.isPrototypeOf(bob)); // true
+
+console.log(Object.getPrototypeOf(bob) === Father.prototype); // false
+console.log(Object.getPrototypeOf(bob) === Child.prototype); // true
+
+// true
+console.log(Object.getPrototypeOf(Child.prototype) === Father.prototype);
+```
+
 ## Anotações Gerais e Rascunhos
 
+```javascript
 class Father {
   constructor() {
   }
@@ -252,129 +382,130 @@ class Bar {
 const bob = new Child();
 const bar = new Bar();
 const foo = new Foo();
+```
 
-Prototype de Function não tem name
-Function.prototype.name 
-Function.prototype.construcotr.name retorna Function como string
+Prototype de Function não tem name  
+Function.prototype.name   
+Function.prototype.construcotr.name retorna Function como string  
 
-Todos os outros prototypes tem names?
-Se forem funções sim. Toda função tem a propriedade name que tem seu
-nome
+Todos os outros prototypes tem names?  
+Se forem funções sim. Toda função tem a propriedade name que tem seu  
+nome  
 Se for objeto, verifique o prototype com .constructor.name
-Objetos não tem propriedade name por dafault
-obj é uma instancia de obj.constructor.name 
-Function.prototype = uma função anonima
-prototypes podem ser funções????
-Sim. Isso é usado com o Extends
-Object.getPrototypeOf(Child) === Father // true
-Child Extends Father
-O fato de extender não executou o prototype de Father,
-Child não é uma instancia de Father
-Apenas as instancias herdam o prototype
-Como Child não é instancia de Father, o seu prototypo não é
-Father.prototype
-Quem é o prototype de Child?
-A Função FATHER
-O constructor é usado para instancias e retorna um objeto
-No extends, a propria função construtora é o prototype de Child
-e não o prototype da função construtora
-Porque prototype de Child tem name e prototype de Father não tem name ?
-name é propriedade de uma função
+Objetos não tem propriedade name por dafault  
+obj é uma instancia de obj.constructor.name  
+Function.prototype = uma função anonima  
+prototypes podem ser funções????  
+Sim. Isso é usado com o Extends  
+Object.getPrototypeOf(Child) === Father // true  
+Child Extends Father  
+O fato de extender não executou o prototype de Father,  
+Child não é uma instancia de Father  
+Apenas as instancias herdam o prototype  
+Como Child não é instancia de Father, o seu prototypo não é  
+Father.prototype  
+Quem é o prototype de Child?  
+A Função FATHER  
+O constructor é usado para instancias e retorna um objeto  
+No extends, a propria função construtora é o prototype de Child  
+e não o prototype da função construtora  
+Porque prototype de Child tem name e prototype de Father não tem name ?  
+name é propriedade de uma função  
 
-Retorna Function, pois o nome da função construtora de deles é Function
-Pode se dizer então que abmos são instancias de Function
-console.log(Object.getPrototypeOf(Father).constructor.name);
-console.log(Object.getPrototypeOf(Child).constructor.name);
+Retorna Function, pois o nome da função construtora de deles é Function  
+Pode se dizer então que abmos são instancias de Function  
+console.log(Object.getPrototypeOf(Father).constructor.name);  
+console.log(Object.getPrototypeOf(Child).constructor.name);  
 
-Object.getPrototypeOf(Child) -> Father
-Father.constructor === Function
-Father.prototype === Father
+Object.getPrototypeOf(Child) - Father  
+Father.constructor === Function  
+Father.prototype === Father  
 
-O prototype de Function e uma função anomima
-console.log(typeof Function.prototype); // 'function'
-se é function tem um name
-no caso de Function.prototype, é uma função anonima
-console.log(Function.prototype.name == ''); // true
+O prototype de Function e uma função anomima  
+console.log(typeof Function.prototype); // 'function'  
+se é function tem um name  
+no caso de Function.prototype, é uma função anonima  
+console.log(Function.prototype.name == ''); // true  
 
-Por que isso aqui da true??
-console.log(Function.prototype === Object.getPrototypeOf(Function)); // true
+Por que isso aqui da true??  
+console.log(Function.prototype === Object.getPrototypeOf(Function)); // true  
 
-A Função Function é uma instancia de Function?
-console.log(Function.prototype.isPrototypeOf(Function)); // True
-Why God???
+A Função Function é uma instancia de Function?  
+console.log(Function.prototype.isPrototypeOf(Function)); // True  
+Why God???  
 
-A Function.prototype é uma funcção anonima
-então function.prototype.name retorna string vazia
+A Function.prototype é uma funcção anonima  
+então function.prototype.name retorna string vazia  
 
-Function.prototype é uma função vazia, todas as funções
-criadas herdam dela
-function x(){};
-console.log(Object.getPrototypeOf(x) === Function.prototype); // true
+Function.prototype é uma função vazia, todas as funções  
+criadas herdam dela  
+function x(){};  
+console.log(Object.getPrototypeOf(x) === Function.prototype); // true  
 
-Function é uma função
-Então Function tbm erda propriedades de Function.prototype
-console.log(Object.getPrototypeOf(Function) === Function.prototype); // true
+Function é uma função  
+Então Function tbm erda propriedades de Function.prototype  
+console.log(Object.getPrototypeOf(Function) === Function.prototype); // true  
 
-Quem é o prototype de Function.prototype?
-console.log(typeof Object.getPrototypeOf(Function.prototype)); // object 
-Então usei o constructor.name para saber o nome da função construtora
-console.log(Object.getPrototypeOf(Function.prototype).constructor.name);
-Object
-console.log(Object.getPrototypeOf(Function.prototype) === Object.prototype);
-True
-console.log(Object.getPrototypeOf(Object.prototype) === null); // True
-Concluido prototype chain passando por um extends
-Poruqe isso não funciona
-O prototype é setado nas instancias
-Quando usado o extends, a classe que extende o father, não é sua instancia
-logo não possuira seu prototype
-E quem será seu prototype se não for, Father.prototype?
-Seu prototype será a função Father;
-console.log(Object.getPrototypeOf(Child) === Father.prototype); // False
-console.log(Object.getPrototypeOf(Child) === Father); // true
+Quem é o prototype de Function.prototype?  
+console.log(typeof Object.getPrototypeOf(Function.prototype)); // object   
+Então usei o constructor.name para saber o nome da função construtora  
+console.log(Object.getPrototypeOf(Function.prototype).constructor.name);  
+Object  
+console.log(Object.getPrototypeOf(Function.prototype) === Object.prototype);  
+True  
+console.log(Object.getPrototypeOf(Object.prototype) === null); // True  
+Concluido prototype chain passando por um extends  
+Poruqe isso não funciona  
+O prototype é setado nas instancias  
+Quando usado o extends, a classe que extende o father, não é sua instancia  
+logo não possuira seu prototype  
+E quem será seu prototype se não for, Father.prototype?  
+Seu prototype será a função Father;  
+console.log(Object.getPrototypeOf(Child) === Father.prototype); // False  
+console.log(Object.getPrototypeOf(Child) === Father); // true  
 
-console.log(Object.getPrototypeOf(bob) === Child.prototype);
-console.log(Object.getPrototypeOf(Child.prototype) === Father.prototype);
-console.log(Object.getPrototypeOf(Father.prototype) === Object.prototype);
-console.log(Object.getPrototypeOf(Object.prototype) === null);
+console.log(Object.getPrototypeOf(bob) === Child.prototype);  
+console.log(Object.getPrototypeOf(Child.prototype) === Father.prototype);  
+console.log(Object.getPrototypeOf(Father.prototype) === Object.prototype);  
+console.log(Object.getPrototypeOf(Object.prototype) === null);  
 
-console.log(Object.getPrototypeOf(Child) === Father);
-console.log(Object.getPrototypeOf(Father) === Function.prototype);
-console.log(Object.getPrototypeOf(Function.prototype) === Object.prototype);
-console.log(Object.getPrototypeOf(Object.prototype) === null);
+console.log(Object.getPrototypeOf(Child) === Father);  
+console.log(Object.getPrototypeOf(Father) === Function.prototype);  
+console.log(Object.getPrototypeOf(Function.prototype) === Object.prototype);  
+console.log(Object.getPrototypeOf(Object.prototype) === null);  
 
-console.log(Object.getPrototypeOf(Function) === Function.prototype);
-console.log(Object.getPrototypeOf(Function.prototype) === Object.prototype);
-console.log(Object.getPrototypeOf(Object.prototype) === null);
+console.log(Object.getPrototypeOf(Function) === Function.prototype);  
+console.log(Object.getPrototypeOf(Function.prototype) === Object.prototype);  
+console.log(Object.getPrototypeOf(Object.prototype) === null);  
 
-Objetos não tem prototype
-Objetos herdam um prototype
-Apenas funções possuem prototypes
-console.log(typeof Bar); // function
-console.log(typeof Bar.prototype); // object
-console.log(Object.getPrototypeOf(Bar) === Function.prototype);
+Objetos não tem prototype  
+Objetos herdam um prototype  
+Apenas funções possuem prototypes  
+console.log(typeof Bar); // function  
+console.log(typeof Bar.prototype); // object  
+console.log(Object.getPrototypeOf(Bar) === Function.prototype);  
 
-Verificando a função construtora de alguem
-let alguem = {};
-Verifico o nome da função construtora usada para criar um objeto
-console.log(Object.getPrototypeOf(alguem).constructor.name); // Object
-Depois é so comparar com o prototype do constructor encontrado
-console.log(Object.getPrototypeOf(alguem) === Object.prototype); // true
+Verificando a função construtora de alguem  
+let alguem = {};  
+Verifico o nome da função construtora usada para criar um objeto  
+console.log(Object.getPrototypeOf(alguem).constructor.name); // Object  
+Depois é so comparar com o prototype do constructor encontrado  
+console.log(Object.getPrototypeOf(alguem) === Object.prototype); // true  
 
-Prototype sempre vai ser um Objeto
-typeof any.prototype // object or function
-Apenas funções tem um prototype
-Prototype é uma propriedade de uma função
-Apenas quem constroi tem prototype
-Apenas funções constroem
-Quem é instanciado não possui prototype
-O que é construido herda o prototype da função
-Apenas funções possuem prototype
-Objetos não tem prototype
-Objeto e função são as mesmas coisas
-Não
-Como assim objeto não tem prototipo? pelo que eu vi ele herda de alguem
-Todo objeto herda o prototype de seu constructor
-Verifique o construtor assim
-obj.constructor.name
-Assim você sabera de quem seu objeto herdou o prototype
+Prototype sempre vai ser um Objeto  
+typeof any.prototype // object or function  
+Apenas funções tem um prototype  
+Prototype é uma propriedade de uma função  
+Apenas quem constroi tem prototype  
+Apenas funções constroem  
+Quem é instanciado não possui prototype  
+O que é construido herda o prototype da função  
+Apenas funções possuem prototype  
+Objetos não tem prototype  
+Objeto e função são as mesmas coisas  
+Não  
+Como assim objeto não tem prototipo? pelo que eu vi ele herda de alguem  
+Todo objeto herda o prototype de seu constructor  
+Verifique o construtor assim  
+obj.constructor.name  
+Assim você sabera de quem seu objeto herdou o prototype  
