@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <form id="pessoas-form">
+    <label>
+      <span>Nome</span>
+      <input type="text" name="nome">
+    </label>
+    <label>
+      <span>Sobrenome</span>
+      <input type="text" name="sobrenome">
+    </label>
+    <label>
+      <span>Peso</span>
+      <input type="text" name="peso">
+    </label>
+    <label>
+      <span>Altura</span>
+      <input type="text" name="altura">
+    </label>
+    <button type="submit">Adicionar</button>
+  </form>
+  <ul id="pessoas-resultado">
+  </ul>
+  <script>
+    const form = document.querySelector('#pessoas-form');
+    const resultado = document.querySelector('#pessoas-resultado');
+    const pessoas = [];
+    function adicionarPessoa({nome, sobrenome, peso, altura}) {
+      pessoas.push({
+        nome: nome.value, 
+        sobrenome: sobrenome.value, 
+        peso: peso.value, 
+        altura: altura.value
+      });
+      resultado.innerHTML += `<li>${nome.value} ${sobrenome.value} tem ${peso.value} kg e ${altura.value} de altura</li>`;
+      console.log(pessoas);
+    }
+    function limparForm() {
+      for (const iterator of form) {
+        iterator.value = '';
+      }
+    }
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      adicionarPessoa(e.target);
+      limparForm();
+    });
+  </script>
+</body>
+</html>
