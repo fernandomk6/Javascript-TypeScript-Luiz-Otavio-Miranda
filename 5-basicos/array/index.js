@@ -15,6 +15,20 @@ let noRecomended = [1, 'Fernando', {isRecomended: false}, [], true, null];
 
 console.log(arrayStrings);
 
+// O operador delete exclui uma propriedade de um objeto
+// returna true quando conseguiu deletar
+
+// o operador delete é empregado para excluir uma propriedade de um objeto. 
+// Depois de excluir a propriedade real, essa propriedade não estará acessível 
+// e retornará undefined
+
+// usando em objeto exclui a propriedade
+// usando em array exclui o conteudo do indice, e seta o como undefined
+// mas não reordena o array, deixa um buraco
+
+// pode ser usado em variaveis pois variaveis com let e const são
+// propriedades do objeto global
+
 // deletando itens do array
 delete arrayStrings[0]; // remove o indice do array
 console.log(arrayStrings[0]); // undefined
