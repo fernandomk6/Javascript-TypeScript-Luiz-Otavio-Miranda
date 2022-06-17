@@ -8,12 +8,40 @@
 </head>
 <body>
   <h1>Numbers Exercicios</h1>
-  <ul>
-    <li>Seu nomero é <span id="number">0</span></li>
-  </ul>
+  <h2>Seu numero é <span id="my-number">0</span></h2>
+  <div id="questions">
+
+  </div>
   <script>
-    const number = prompt('Qual é o seu número?');
-    alert(`Seu número é ${number}`);
+    function encerrar() {
+      alert('Informe um numero valido');
+      return Number(prompt('Qual é o seu número?').replace(',', '.').replace('.', '')) 
+        || encerrar();
+    }
+    const myNumber = 
+      Number(prompt('Qual é o seu número?').replace(',', '.').replace('.', '')) || 
+        encerrar();
+
+    const numberTitle = document.querySelector('#my-number');
+    const questions = document.querySelector('#questions');
+
+    numberTitle.innerHTML = myNumber;
+
+    questions.innerHTML += 
+      `A raiz quadrada do seu numero é ${myNumber ** 0.5}<br>`;
+    questions.innerHTML += 
+      `É NaN? ${Number.isNaN(Number(myNumber))}<br>`;
+    questions.innerHTML += 
+      `Arredondando para baixo ${Math.floor(myNumber)}<br>`;
+    questions.innerHTML += 
+      `Arredondando para cima ${Math.ceil(myNumber)}<br>`;
+    questions.innerHTML += 
+      `Arredondando para o mais proximo ${Math.round(myNumber)}<br>`;
+    questions.innerHTML += 
+      `Com duas casas decimais ${myNumber.toFixed(2)}<br>`;
+    questions.innerHTML += 
+      `É inteiro? ${Number.isInteger(myNumber)}<br>`;
+
   </script>
 </body>
 </html>
