@@ -1,6 +1,8 @@
 # Entenda como o this funciona  
+
 ## Conceito geral
-> Em JavaScript, usa-se this de forma semelhante ao uso de pronomes em   
+
+> Em JavaScript, usa-se this de forma semelhante ao uso de pronomes em  
 linguagens naturais, como o inglês ou francês. Escreve-se: “João está correndo  
 rápido porque ele está tentando pegar o trem”. Note o uso do pronome “ele”.  
 Poderia se ter escrito: “João está correndo rápido porque João está tentando  
@@ -10,6 +12,7 @@ semelhante, em JavaScript se usa a palavra-chave this como um atalho, um
 referente; ou seja, o sujeito no contexto ou o sujeito do código em execução.  
 
 ## This em function declaration tradicional
+
 ```javascript
 const foo = {
   getThis() {
@@ -74,7 +77,9 @@ a instancia da classe. Logo o this do arrow function, vai "copiar", esse this.
 Usando a mesma logica que copiaria uma variavel normal.
 
 ## Diferenças entre funções arrow e tradicionais
-Uma função de seta é diferente de uma função normal apenas de duas maneiras  
+
+Uma função de seta é diferente de uma função normal apenas de duas maneiras
+
 - As seguintes construções são lexicais: arguments, super, this,new.target  
 - Não pode ser usado como construtor: funções normais suportam new através do  
 método interno `[[Construct]]` e da propriedade prototype. As funções de seta  

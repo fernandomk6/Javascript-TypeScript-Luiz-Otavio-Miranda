@@ -1,4 +1,5 @@
 # Prototypes
+
 Cada objeto tem um link interno para um outro objeto chamado prototype.  
 Esse objeto prototype também tem um atributo prototype, e assim por diante  
 até o que o valor null seja encontrado como sendo o seu prototype.  
@@ -6,6 +7,7 @@ null que, por definição, não tem prototype, e age como um link final
 nesta cadeia de protótipos (prototype chain).
 
 ## instanceof
+
 O operador instanceof testa se um objeto tem, em seu prototype, a  
 função construtora
 
@@ -44,8 +46,10 @@ console.log(Object.getPrototypeOf(dog).constructor); // class Animal
 ```
 
 ## Class não Existe em Javacript!!
+
 Class é uma Função construtora!
 Veja:
+
 ```javascript
 class MyClass = {
   constructor(param){
@@ -59,6 +63,7 @@ console.log(typeof MyClass); // function!! Que coisa não??
 Class por baixo dos panos funciona exatamente como uma função construtora  
 normal  
 Veja:
+
 ```javascript
 function MyClass (param) {
   this.prop = param;

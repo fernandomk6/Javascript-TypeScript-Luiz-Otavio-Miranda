@@ -1,4 +1,5 @@
 # Mais sobre Prototypes
+
 ## Entendendo a diferença entre, construtores e objetos
 
 Veja o Codigo Abaixo
@@ -34,10 +35,10 @@ console.log(typeof People) // function;
 ```
 
 Agora isso faz mais sentido. A classe é na verdade, a função construtora.  
-Toda função construtora retorna um objeto  
+Toda função construtora retorna um objeto
 
 Neste exemplo perceba que uma função construtora pode retornar um objeto,  
-ou pode apenas retornar um valor 'normal', como uma simples chamada  
+ou pode apenas retornar um valor 'normal', como uma simples chamada
 da função
 
 ```javascript
@@ -70,11 +71,11 @@ const strConverted = String(1); // converte o parametro 1, para '1' e o retorna
 
 ---
 
-## `__proto__` VS prototype 
+## `__proto__` VS prototype
 
 - Prototype
   - Prototype é uma propriedade de um objeto Function  
-  - É o protótipo de objetos construídos por essa função 
+  - É o protótipo de objetos construídos por essa função
   - É algo **específico para funções** (inicialmente definido em Function, ie,  
   Function.prototypee então prototipicamente herdado por funções recém-criadas,  
   e então novamente essas funções o entregam a seus filhos, formando uma  
@@ -108,8 +109,8 @@ eve.prototype  //undefined
 // As classes / funções construtoras, têm prototype
 ```
 
-A `__proto__` propriedade de um objeto é uma propriedade que mapeia para a   
-prototype função construtora do objeto. Em outras palavras  
+A `__proto__` propriedade de um objeto é uma propriedade que mapeia para a  
+prototype função construtora do objeto. Em outras palavras
 
 ```javascript
 instance.__proto__ === constructor.prototype // true
@@ -140,7 +141,7 @@ child é inacessivel pois o javascript não permite que a instancia altere
 diretamente o seu prototype, isso não faz muito sentido. Por isso `__proto__`  
 funciona como um getter e setter para o prototipo.
 
-O prototipo deve ser alterado diretametne e não por suas instancias,
+O prototipo deve ser alterado diretametne e não por suas instancias,  
 por isso existe a propriedade `__proto__`
 
 As coisas são muito simples. A propriedade prototype é um exemplo de como  
@@ -170,6 +171,7 @@ Object.getPrototypeOf(x) === x.__proto__; // true
 ---
 
 ## Metodo e propriedade Estaticos
+
 Metodo estaticos são metodo que um objeto function, ou class pode ter,  
 e esses metodos podem ser executados diretamente pelo objeto function  
 ou class, sem precisar da instancia de um objeto  
@@ -215,19 +217,24 @@ Foo.staticMethod(); // Metodo estatico executado
 ```
 
 Isso faz a mesma coisa do exemplo acima. Porem agora usando  
-a palavra chave static  
+a palavra chave static
 
 Perceba que o javascript utiliza varios metodos estaticos, como por exemplo  
 `Object.create()`
 
 **Os objetos instanciados apartir de Foo, herdarão o staticMethod?**  
-A resposta é  
+
+A resposta é
+
 **Não!**  
+
 Os Metodos estaticos pertencem apenas a função / class, e não são passada para  
 as suas instancias
+
 ---
 
 ## Metodos e propriedades estaticos
+
 Metodos estaticos são colocados diretamente no objeto construtor function  
 Metodo estatico não são herdado pelas instancias
 
@@ -288,6 +295,7 @@ console.log(Bar.isStatic); // true
 ```
 
 ## Extends
+
 O extends é uma chamada de uma função construtora  
 É quando o prototype de alguma função, é outra função
 
@@ -385,13 +393,13 @@ const foo = new Foo();
 ```
 
 Prototype de Function não tem name  
-Function.prototype.name   
+Function.prototype.name  
 Function.prototype.construcotr.name retorna Function como string  
 
 Todos os outros prototypes tem names?  
 Se forem funções sim. Toda função tem a propriedade name que tem seu  
 nome  
-Se for objeto, verifique o prototype com .constructor.name
+Se for objeto, verifique o prototype com .constructor.name  
 Objetos não tem propriedade name por dafault  
 obj é uma instancia de obj.constructor.name  
 Function.prototype = uma função anonima  
@@ -415,39 +423,39 @@ name é propriedade de uma função
 Retorna Function, pois o nome da função construtora de deles é Function  
 Pode se dizer então que abmos são instancias de Function  
 console.log(Object.getPrototypeOf(Father).constructor.name);  
-console.log(Object.getPrototypeOf(Child).constructor.name);  
+console.log(Object.getPrototypeOf(Child).constructor.name);
 
 Object.getPrototypeOf(Child) - Father  
 Father.constructor === Function  
-Father.prototype === Father  
+Father.prototype === Father
 
 O prototype de Function e uma função anomima  
 console.log(typeof Function.prototype); // 'function'  
 se é function tem um name  
 no caso de Function.prototype, é uma função anonima  
-console.log(Function.prototype.name == ''); // true  
+console.log(Function.prototype.name == ''); // true
 
 Por que isso aqui da true??  
-console.log(Function.prototype === Object.getPrototypeOf(Function)); // true  
+console.log(Function.prototype === Object.getPrototypeOf(Function)); // true
 
 A Função Function é uma instancia de Function?  
 console.log(Function.prototype.isPrototypeOf(Function)); // True  
-Why God???  
+Why God???
 
 A Function.prototype é uma funcção anonima  
-então function.prototype.name retorna string vazia  
+então function.prototype.name retorna string vazia
 
 Function.prototype é uma função vazia, todas as funções  
 criadas herdam dela  
 function x(){};  
-console.log(Object.getPrototypeOf(x) === Function.prototype); // true  
+console.log(Object.getPrototypeOf(x) === Function.prototype); // true
 
 Function é uma função  
 Então Function tbm erda propriedades de Function.prototype  
-console.log(Object.getPrototypeOf(Function) === Function.prototype); // true  
+console.log(Object.getPrototypeOf(Function) === Function.prototype); // true
 
 Quem é o prototype de Function.prototype?  
-console.log(typeof Object.getPrototypeOf(Function.prototype)); // object   
+console.log(typeof Object.getPrototypeOf(Function.prototype)); // object  
 Então usei o constructor.name para saber o nome da função construtora  
 console.log(Object.getPrototypeOf(Function.prototype).constructor.name);  
 Object  
@@ -462,35 +470,35 @@ logo não possuira seu prototype
 E quem será seu prototype se não for, Father.prototype?  
 Seu prototype será a função Father;  
 console.log(Object.getPrototypeOf(Child) === Father.prototype); // False  
-console.log(Object.getPrototypeOf(Child) === Father); // true  
+console.log(Object.getPrototypeOf(Child) === Father); // true
 
 console.log(Object.getPrototypeOf(bob) === Child.prototype);  
 console.log(Object.getPrototypeOf(Child.prototype) === Father.prototype);  
 console.log(Object.getPrototypeOf(Father.prototype) === Object.prototype);  
-console.log(Object.getPrototypeOf(Object.prototype) === null);  
+console.log(Object.getPrototypeOf(Object.prototype) === null);
 
 console.log(Object.getPrototypeOf(Child) === Father);  
 console.log(Object.getPrototypeOf(Father) === Function.prototype);  
 console.log(Object.getPrototypeOf(Function.prototype) === Object.prototype);  
-console.log(Object.getPrototypeOf(Object.prototype) === null);  
+console.log(Object.getPrototypeOf(Object.prototype) === null);
 
 console.log(Object.getPrototypeOf(Function) === Function.prototype);  
 console.log(Object.getPrototypeOf(Function.prototype) === Object.prototype);  
-console.log(Object.getPrototypeOf(Object.prototype) === null);  
+console.log(Object.getPrototypeOf(Object.prototype) === null);
 
 Objetos não tem prototype  
 Objetos herdam um prototype  
 Apenas funções possuem prototypes  
 console.log(typeof Bar); // function  
 console.log(typeof Bar.prototype); // object  
-console.log(Object.getPrototypeOf(Bar) === Function.prototype);  
+console.log(Object.getPrototypeOf(Bar) === Function.prototype)
 
 Verificando a função construtora de alguem  
 let alguem = {};  
 Verifico o nome da função construtora usada para criar um objeto  
 console.log(Object.getPrototypeOf(alguem).constructor.name); // Object  
 Depois é so comparar com o prototype do constructor encontrado  
-console.log(Object.getPrototypeOf(alguem) === Object.prototype); // true  
+console.log(Object.getPrototypeOf(alguem) === Object.prototype); // true
 
 Prototype sempre vai ser um Objeto  
 typeof any.prototype // object or function  
@@ -508,4 +516,4 @@ Como assim objeto não tem prototipo? pelo que eu vi ele herda de alguem
 Todo objeto herda o prototype de seu constructor  
 Verifique o construtor assim  
 obj.constructor.name  
-Assim você sabera de quem seu objeto herdou o prototype  
+Assim você sabera de quem seu objeto herdou o prototype
