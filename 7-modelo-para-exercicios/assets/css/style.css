@@ -48,24 +48,29 @@ form button {
   font-size: 1.2em;
 }
 
-.tabelaIMC {
+.table-imc {
   display: flex;
   border-bottom: 1px solid whitesmoke;
   padding-bottom: 20px;
   margin-bottom: 20px;
 }
 
-.IMC,
-.resultado {
+.table-imc div {
   flex: 1 1 auto;
-}
+} 
 
-.title {
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.seu-imc {
-  background-color: rgb(43, 43, 43);
+.result-imc-sucess{
+  background-color: darkgreen;
+  color: lightgreen;
   padding: 20px;
+}
+
+.result-imc-error {
+  background-color: darkred;
+  color: pink;
+  padding: 20px;
+}
+
+.hide {
+  display: none;
 }

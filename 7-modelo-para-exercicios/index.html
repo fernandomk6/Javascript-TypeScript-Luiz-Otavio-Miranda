@@ -10,9 +10,9 @@
 <body>
   <section class="container">
     <h1>Tabela IMC</h1>
-    <div class="tabelaIMC">
-      <div class="IMC">
-        <p class="title">IMC</p>
+    <div class="table-imc">
+      <div>
+        <h4>IMC</h4>
         <p>Menos que 18,55</p>
         <p>Entre 18,5 e 24,9</p>
         <p>Entre 25 e 29,9</p>
@@ -20,8 +20,8 @@
         <p>Entre 35 e 39,9</p>
         <p>Mais do que 40</p>
       </div>
-      <div class="resultado">
-        <p class="title">Resultado</p>
+      <div>
+        <h4>Resultado</h4>
         <p>Abaixo do peso</p>
         <p>Peso normal</p>
         <p>Sobrepeso</p>
@@ -32,15 +32,13 @@
     </div>
     <h2>Calcule seu IMC</h2>
     <form id="main-form">
-      <label for="peso">Peso</label>
-      <input type="text" id="peso" name="peso">
-      <label for="altura">Altura</label>
-      <input type="number" id="altura" name="altura">
+      <label for="weight">Peso</label>
+      <input type="number" id="weight" name="weight" step="0.01">
+      <label for="height">Altura</label>
+      <input type="number" id="height" name="height" step="0.01">
       <button>Enviar</button>
     </form>
-    <section class="seu-imc">
-      <p>Preecha os dados acima para calcular seu IMC!</p>
-    </section>
+    <p id="result-text" class="hide">Preecha os dados acima para calcular seu IMC!</p>
   </section>
   <script src="./assets/js/main.js"></script>
 </body>
