@@ -1,12 +1,12 @@
 const container = document.querySelector('.container');
 const date = new Date();
 
-function formatDatetime(aDate) {
- return aDate.toString();
+function formatDate(date) {
+ return date.toString();
 }
 
-function renderDate(formatedDate, containerDate) {
-  containerDate.innerHTML = formatedDate;
+function renderDate(formatedDate) {
+  container.innerHTML = formatedDate;
 }
 
-renderDate(formatDatetime(date), container);
+renderDate(formatDate(date));
