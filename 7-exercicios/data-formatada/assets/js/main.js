@@ -1,7 +1,6 @@
 const dateContainer = document.querySelector('.date');
 const timeContainer = document.querySelector('.time');
 
-
 function formatDate(date) {
   const daysWeek= [
     'domingo',
@@ -56,8 +55,6 @@ function renderDate() {
 
   dateContainer.innerHTML = formatedDate;
   timeContainer.innerHTML = formatedTime;
-
-  console.log(date);
 }
 
 function init() {
