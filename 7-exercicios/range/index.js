@@ -1,20 +1,18 @@
-function range(n1, n2, increment) {
-  const first = n1;
-  const last = n2;
-  const step = increment || 1;
-  let arrayRange = [];
+function range(n1, n2, increment = 1) {
 
-  if (!last) {
-    for (let value = 1; value <= first; value += step) {
+  const arrayRange = [];
+
+  if (!n2) {
+    for (let value = 1; value <= n1; value += increment) {
       arrayRange.push(value);
     }
   } else {
-    if (first <= last) {
-      for (let value = first; value <= last; value += step) {
+    if (n1 <= n2) {
+      for (let value = n1; value <= n2; value += increment) {
         arrayRange.push(value);
       }
     } else {
-      for (let value = first; value >= last; value -= step) {
+      for (let value = n1; value >= n2; value -= increment) {
         arrayRange.push(value);
       }
     }
