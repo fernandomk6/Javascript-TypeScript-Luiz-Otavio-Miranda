@@ -1,0 +1,51 @@
+:root {
+  --primary-color: rgb(92, 66, 102);
+  --dark-primary-color: rgb(41, 28, 46);
+  --light-primary-color: rgb(146, 119, 156);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background-color: whitesmoke;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.container {
+  padding: 40px;
+  max-width: 700px;
+  color: whitesmoke;
+  background-color: var(--primary-color);
+  margin: 40px auto;
+}
+
+.paragraph{
+  padding: 10px;
+  margin: 10px 0;
+  letter-spacing: .5px;
+  transition: 1s;
+}
+
+.main-btn {
+  border: none;
+  margin: 10px 0;
+  padding: 10px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: .5s;
+  background-color: var(--light-primary-color);
+  color: white;
+}
+
+.main-btn:hover {
+  background-color: var(--dark-primary-color);
+}
