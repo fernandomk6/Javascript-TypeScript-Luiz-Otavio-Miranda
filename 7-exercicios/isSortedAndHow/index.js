@@ -1,11 +1,13 @@
 function isSortedAndHow(arr) {
   const isAscending = arr.every((element, index, array) =>
-    index ? element > array[index - 1] : true);
+    index ? element > array[index - 1] : true) && 'yes, ascending';
 
   const isDescending = arr.every((element, index, array) =>
-    index ? element < array[index - 1] : true);
+    index ? element < array[index - 1] : true) && 'yes, descending';
 
-  return isAscending ? 'yes, ascending' : isDescending ? 'yes, descending' : 'no';
+  const invalid = 'no';
+
+  return arr.length < 2 ? invalid : isAscending || isDescending || invalid;
 }
 
 console.log(isSortedAndHow([4, 5, 9]));
