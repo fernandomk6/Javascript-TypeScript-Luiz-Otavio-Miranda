@@ -38,6 +38,10 @@ body {
   text-align: center;
 }
 
+.timer span {
+  transition: .5;
+}
+
 .actions {
   display: flex;
   justify-content: space-around;

@@ -1,35 +1,39 @@
-const startBtn = document.querySelector('#start-btn');
-const stopBtn = document.querySelector('#stop-btn');
-const clearBtn = document.querySelector('#clear-btn');
 const timer = document.querySelector('#timer span');
 
 let secondsPassed = 0;
 let intervalTimer = 0;
 
-
 function renderTime() {
-  const initialTime =  new Date(1998, 08, 21).getTime();
-  const timeFormated = new Date(initialTime + secondsPassed).toLocaleTimeString('pt-BR');
-
+  const timeFormated = new Date(secondsPassed).toLocaleTimeString('pt-BR', {
+    hour12: false,
+    timeZone: 'UTC'
+  });
   secondsPassed += 1000;
   timer.innerHTML = timeFormated;
 }
 
-function startTimer() {
-  startBtn.setAttribute('disabled', true);
-  intervalTimer = setInterval(renderTime, 1);
-}
+document.addEventListener('click', event => {
+  const element = event.target;
+  
+  if (element.id === 'start-btn') {
+    let color = '';
+    for (let index = 1; index < 7; index++) {
+      color += Math.round(Math.random() * 9);
+    }
+    timer.style.color = '#' + color;
+    clearInterval(intervalTimer);
+    intervalTimer = setInterval(renderTime, 1000);
+  }
 
-function stopTimer() {
-  startBtn.removeAttribute('disabled');
-  clearInterval(intervalTimer);
-}
+  if (element.id === 'stop-btn') {
+    timer.style.color = 'black';
+    clearInterval(intervalTimer);
+  }
 
-function clearTimer() {
-  secondsPassed = 0;
-  renderTime();
-}
-
-startBtn.addEventListener('click', startTimer);
-stopBtn.addEventListener('click', stopTimer);
-clearBtn.addEventListener('click', clearTimer);
+  if (element.id === 'clear-btn') {
+    timer.style.color = 'black';
+    secondsPassed = 0;
+    clearInterval(intervalTimer);
+    renderTime();
+  }
+});
