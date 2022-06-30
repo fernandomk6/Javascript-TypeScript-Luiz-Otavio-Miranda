@@ -3,6 +3,10 @@
 Closure é um conceito em linguagem de programação que, de forma simplificada, 
 permite que uma função acesse variáveis de sua função parente.
 
+Clousure é um conceito. A função lembra do escopo lexico de onde foi declarada.
+Mesmo que chamada em outro escopo, ela ira usar o escopo onde foi declarada.
+Ela lembra de onde veio.
+
 ```javascript
 function start() {
     const message = "hello world";
