@@ -1,27 +1,21 @@
 function validarCPF(cpf) {
-  if (!cpf.length || cpf.length < 11) return false;
+  if (!cpf.length || cpf.length !== 14) return false;
 
   const CPFOriginal = Array.from(cpf.replace(/\D+/g, ''));
   const CPFSemDigitos = CPFOriginal.slice(0, -2);
-  const CPFVerificado = getDigitosVerificadores(CPFSemDigitos);
+  const CPFVerificado = getCPFVerificado(CPFSemDigitos);
 
-  return CPFVerificado.join(',') === CPFOriginal.join(',');
+  return CPFVerificado.join() === CPFOriginal.join();
 }
 
-function getDigitosVerificadores(CPF) {
+function getCPFVerificado(CPF) {
   const multiplicador = CPF.length === 9 ? 10 : CPF.length === 10 ? 11 : null;
-  
-  let resultado = CPF.reduce((total, digito, indice) => {
-    return total += Number(digito) * (multiplicador - indice);
-  }, 0);
-  
-  resultado = 11 - (resultado % 11);
-  CPF = [...CPF, resultado.toString()];
+  const total = CPF.reduce((total, digito, indice) => total += Number(digito) * (multiplicador - indice), 0);
+  const digito = 11 - (total % 11);
 
-  if (CPF.length === 11) return CPF;
+  CPF = [...CPF, digito > 9 ? 0 : digito];
 
-  return getDigitosVerificadores(CPF) || [];
+  return CPF.length === 11 ? CPF : getCPFVerificado(CPF);
 }
 
-console.log(validarCPF('705.484.450-52'));
-console.log(validarCPF(NaN));
+console.log(validarCPF('070.987.720-03'));
