@@ -66,6 +66,8 @@ retornar true para qualquer elemento do array; caso contrário, false.
 - reverse(reverte): Inverte a ordem dos elementos do nosso array.
 - sort(ordenar): ordena o array
 - Array.isArray(é um array): Retorna true se a variável é um array e false caso contrário.
+- Array.from(de): Cria uma nova instância de um Array quando for passado um array-like 
+ou um iterable object como argumento.
 
 ### Exemplos de alguns metodos
 
