@@ -1,5 +1,16 @@
 # Objetos
 
+## Observações
+
+Objetocs em javascript podem receber strings como nome de propriedades, em
+casos onde `obj[1]`. 1 não é um identificador valido, logo, o javascript
+o converte para string `{'1': undefined}`. Para acessar essa propriedade
+não podemos usar a maneira tradicional `obj.1`. Isso vai gerar um erro
+de sintaxe. Nesses casos onde **o identificador é invalido**, so é possivel
+acessar essa propriedade usando a notação de colchetes `obj[1]`.
+Sendo assim acessadas atraves de notação de colchetes, em casos onde a
+string usa caracteres especiais como `-` ou começam com numeros
+
 ## Descriptors
 
 Todo objeto possui chave, valor e um descritor (Descriptor)

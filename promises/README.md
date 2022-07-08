@@ -1,4 +1,4 @@
-# Promises
+# Promises part 1
 
 [developer.mozilla.org](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 
@@ -92,7 +92,36 @@ todos aqueles que estão em Promise.prototype.
 - finally: ƒ finally()
 - then: ƒ then()
 
-## Exercicios
+# Promises part 2
+
+## Calbacks
+
+Callback são chamados quando o processamento é concluído.
+
+Faça isso e quando concluído, execute essa função em caso de sucesso ou
+essa em caso de erro.
+
+## then e catch
+
+O then tenta resolver a promise. E é executado em caso de sucesso.
+O catch é executado quando a função é rejeitada.
+
+A promise quando criada ou retornada, seta os argumentos que serão passados 
+para as funções callbacks resolve e rejected**.
+
+O método then, recebe como argumento uma função de callback que é chamada 
+em caso de sucesso. E o catch é chamado em caso de rejeição.
+
+O valor que o then retorna é o valor que será recebido no then seguinte.
+É como se o valor de retorno do then fosse o novo valor que é passado 
+para o callback resolve.
+
+O caback do then é o callback resolve que é setado na criação da promise
+
+Apartir da segunda execução do then, o parametro do callback é 
+setado pelo retorno do primeiro then
+
+# Exercicios
 
 - Criar várias funções que retornem promises e testa-las na janela
 - Usar spinner para informar o carregamento
