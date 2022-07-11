@@ -1,18 +1,18 @@
 // em javasctipr as declarações (veja diferenças entre declarar e iniciar) 
 // são elevadas ao topo do codigo
-// sayHello();
+sayHello();
 
 // funciona pois a função esta sendo apenas declarada
-// function sayHello() {
-//   console.log('hello');
-// }
+function sayHello() {
+  console.log('hello');
+}
 
 // Cannot access 'sayHello' before initialization
 // nesse exemplo não funciona pq say hello é declarada e iniciada pois esta,
 // tendo seu valor setado (sendo usada)
-// const sayHello = function() {
-//   console.log('hello');
-// }
+const sayHello = function() {
+  console.log('hello');
+}
 
 // basicamente declarações de funções traducionais são movidas para o 
 // topo do codigo.
