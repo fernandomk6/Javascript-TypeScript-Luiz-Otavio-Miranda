@@ -55,6 +55,13 @@ foi rejeitada na lista. Este método pode ser útil para agregar resultados de m
 Retorna uma promise que resolve ou rejeita assim que uma das promises do argumento lista 
 resolve ou rejeita, com um valor ou o motivo daquela promise.
 
+#### Promise.any(lista)
+
+Retorna uma promise pending, com a primeira promise resolvida com sucesso, basta que uma,
+seja resolvida para que seja retornada uma promisse resolvida. Caso a primeira resolvida.
+Apenas retornará uma promise rejeitada caso TODAS as promises passada no argumento iterator,
+sejam rejeitadas, caso contrário, a primeira das resolvidas será retorna.
+
 #### Promise.reject(motivo)
 
 Retorna um objeto Promise que foi rejeitado por um dado motivo.
