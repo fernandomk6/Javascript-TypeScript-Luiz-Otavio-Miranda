@@ -81,3 +81,56 @@ Existem básicamente três formas de uma requisição enviar dados:
 - URL Params -> www.site.com/users/1 onde 1 é o parametro da URL.
 - URL Query -> www.site.com/users/1?isAdmin=false onde tudo que está após `?` são as URL query.
 - Request.body -> Objeto enviado no corpo da requisição.
+
+## Router e Controllers
+
+Router é um método do express que fica responsavel por lidar com as rotas e direcionar cada 
+rota a um controller.
+
+- Controllers
+
+Criamos uma pasta com nome controllers, nela terão varios arquivos. Cada erquivo
+irá exportar uma função, que será responsável por lidar com cada rota.
+
+```javascript
+function initialPage(request, response) {
+  response.send('Hello my friendzas');
+};
+
+module.exports.initialPage = initialPage;
+```
+
+- Router
+
+Criamos também um arquivo routes, onde nele será listado cada roda. Porém usando o 
+método Router do express.
+
+```javascript
+const express = require('express');
+const route = express.Router();
+
+const homeControler = require('./controllers/homeController');
+
+route.get('/', homeControler.initialPage);
+
+module.exports.route = route;
+```
+
+- Main.js
+
+No arquivo principal da aplicação teremos o uso das rotas e dos controlers
+
+```javascript
+const express = require('express');
+const app = express();
+const routes = require('./routes');
+
+app.use(express.urlencoded({ extended: true }));
+
+// Usando as rotas
+app.use(routes.route);
+
+app.listen(3000, function() {
+  console.log('Servidor rodando na porta 3000');
+});
+```
