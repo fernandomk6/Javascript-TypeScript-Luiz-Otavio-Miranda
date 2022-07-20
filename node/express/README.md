@@ -134,3 +134,7 @@ app.listen(3000, function() {
   console.log('Servidor rodando na porta 3000');
 });
 ```
+
+## Views
+
+Rendereizando as views com o express
