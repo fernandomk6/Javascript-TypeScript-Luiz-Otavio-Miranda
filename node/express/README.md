@@ -138,3 +138,38 @@ app.listen(3000, function() {
 ## Views
 
 Rendereizando as views com o express
+
+```javascript
+app.set('views', path.resolve(__dirname, 'src', 'views')); // setando o diretorio que conterá as views
+app.set('view engine', 'ejs'); // informando que as views serão no formato ejs
+```
+
+Para isso precisaremos instalar o ejs `npm install ejs`.
+
+No comtrole, utilizaremos o método render ao invés do send.
+
+```javascript
+// no controler
+
+function initialPage(request, response) {
+  response.render('index');
+};
+```
+
+Esse index é o nome do arquivo que será buscado dentro da pasta padrão das views que foi setado
+aqui `app.set('views', path.resolve(__dirname, 'src', 'views'));`.
+
+O arquivo .ejs funciona quase que como um HTML porém com alguns "poderes", como por exemplo, fazer
+condifionais loops e etc.
+
+## conteúdo estático
+
+CSS, logos, imagens.
+
+Os arquivos estáticos ficam dentro da pasta public.
+
+É necessário setar o caminho dos arquivos estáticos no arquivo core do express
+`app.set(express.static(path));`. De forma real 
+`app.use(express.static(path.resolve(__dirname, 'public')));`.
+
+
