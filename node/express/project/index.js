@@ -20,5 +20,5 @@ app.get('/test/', function(request, response) {
 });
 
 app.listen(3000, function() {
-  console.log('Servidor iniciado na porta 3000');
+  console.log('Servidor rodando na porta 3000');
 });

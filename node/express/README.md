@@ -12,20 +12,17 @@ uma view ou um json ou qualquer coisa.
 Uma unica rota pode fazer varias coisas dependendo do metodo http de sua
 requisição.
 
-## URL Params
-
-- URL Params
-- Query Params
-
-### URL Params 
+## URL Params 
 
 São os parametros que vão na rota. Como por exemplo `https://www.fernando.com/users/3`.
 3 é o parametros. Um identificador de usuarios
 
 ```javascript
 // localhost:3000/test/2
+
 app.get('/test/:id?', function(request, response) {
   console.log(request.params);
+  
   response.send('View de test');
 });
 ```
@@ -35,7 +32,7 @@ devem ser precedidos de `?`.
 
 request.params é um objeto que ira conter `{id: 2}`.
 
-### URL Query Params
+## URL Query
 
 Também são parametros que vão na URL, após o caractere `?`. 
 Exemplo `https://www.fernando.com/users/3?premiium=true&rich=false`.
@@ -44,12 +41,16 @@ cada chave e valor é separado por `&`. rick também é uma chave e seu valor é
 
 ```javascript
 // http://localhost:3000/test/3/true?name=fernando&lastname=henrique
+
 app.get('/test/:id?/:isRich?', function(request, response) {
   console.log(request.params); // { id: '3', isRich: 'true' }
   console.log(request.query); // { name: 'fernando', lastname: 'henrique' }
+
   response.send(`Seja bem vindo ${request.query.name} ${request.query.lastname}`);
 });
+
 ```
+
 As query são acessadas pela request.query. Lista um objeto com todas as chave e valores
 passados na url como query string.
 
@@ -73,7 +74,7 @@ do objeto body.
 Para ter acesso ao request.body adicione o seguinte codigo logo apos a declaração de seu app
 `app.use(express.urlencoded({ extended: true }));`;
 
-### Resumo parametros
+## Resumo parametros
 
 Existem básicamente três formas de uma requisição enviar dados:
 
