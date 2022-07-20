@@ -1,11 +1,5 @@
 function initialPage(request, response) {
-  const form = `<form action="./" method="POST">
-    <input placeholder="Nome" name="name" type="text">
-    <input placeholder="Idade" name="age" type="number">
-    <button type="submit">Enviar</button>
-  </form>`;
-
-  response.send(form);
+  response.render('index');
 };
 
 function initialPagePost(request, response) {
