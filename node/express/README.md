@@ -172,4 +172,29 @@ Os arquivos estáticos ficam dentro da pasta public.
 `app.set(express.static(path));`. De forma real 
 `app.use(express.static(path.resolve(__dirname, 'public')));`.
 
+## Middlewares
+
+Middleware á basicamente um controller que que pode ser executado antes de mandar a resposta
+da requisição. Uma requisição pode passar por varios middlewares, ou controllers.
+
+```javascript
+function myMiddleware(request, response, next) {
+  console.log('middleware executed');
+  next();
+}
+
+app.get('/', myMiddleware, myController);
+```
+
+O comando next chama o proxímo controler, que no caso é o `myController`.
+
+### Middlewares globais
+
+Também é possível criar middlewares globais, ou seja, que todas as requisições passarão por ele.
+Basta usar o `app.use(myMiddleware)`. Dessa forma, todas as requisições feitas para todas as rotas,
+de todos os verbos, passarão por esse middleware. **Lembre-se** de sempre chamar a função next
+em seu middleware, para que o proximo controller sejá chamado. Se um middleware não chamar um next
+a requisição nunca será respondida. Ou seja, o navegador ficará carregando para sempre.
+
+
 
